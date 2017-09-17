@@ -30,27 +30,26 @@ class UserController extends Controller
         return view('user', ['users' => $users]);
     }
 
-    public function post()
+
+
+    protected function store()
     {
-        // dd(args:'test');
+		$post = new User;
+		$post->name = request('name');
+		$post->email = request('email');
+		$post->password = bcrypt (request ('password'));
+		$post->save();
+		return back();
+        //dd(request()->all());
+
     }
-
-
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-
-    protected function newUser(array $data)
+	public function destroy(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-
+        
+    }
+	public function edit($id)
+    {
+		$users=User::select('id','name', 'email')->get();
+        return view('edit', ['users' => $users,]);
     }
 }

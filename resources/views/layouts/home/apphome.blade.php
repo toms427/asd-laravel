@@ -2,6 +2,7 @@
 <html>
 <head>
     @include('layouts.home.headhome')
+
 </head>
 <body >
 @include('layouts.home.headerhome')

@@ -22,10 +22,17 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/user', 'UserController@index')->name('user');
-Route::post('/user','UserController@newUser')->name('user');
-
 Auth::routes();
 
 Route::get('/user', 'UserController@index')->name('user');
-Route::get('/edit','EditController@index')->name('edit');
 Route::get('/add','AddController@index')->name('add');
+Route::post('/add','AddController@index1')->name('add');
+Route::post('/add','UserController@create')->name('add');
+
+Route::get('edit/{id}', 'UserController@edit')->name('edit');
+
+Route::post('register', 'AddController@create');
+
+Route::post('/user', 'UserController@store');
+
+Route::delete('user/{id}', 'UserController@destroy');

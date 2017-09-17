@@ -27,36 +27,37 @@
 
                                                     <!-- /.box-header -->
                                                     <!-- form start -->
-                                                    <form class="form-horizontal"  method="POST" action="{{ route('user') }}">
+													
+                                                    <form class="form-horizontal"  method="POST" enctype="multipart/form-data" action="/user">
                                                         {{ csrf_field() }}
                                                         <div class="box-body">
                                                             <div class="form-group">
 
-                                                                <label for="inputname" class="col-sm-2 control-label">Name</label>
-
+                                                                <label for="name" class="col-sm-2 control-label">Name</label>
+																
                                                                 <div class="col-sm-10">
-                                                                    <input type="name" class="form-control" id="inputname" value='name' placeholder="Name">
+                                                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                                                                <label for="email" class="col-sm-2 control-label">Email</label>
 
                                                                 <div class="col-sm-10">
-                                                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                                                                <label for="password" class="col-sm-2 control-label">Password</label>
 
                                                                 <div class="col-sm-10">
-                                                                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="col-sm-offset-2 col-sm-10">
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                                                        <button type="submit" class="btn btn-primary">Save changes</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -64,7 +65,7 @@
 
                                                     </form>
 
-
+											
                                         </div>
                                         <!-- /.modal-content -->
                                     </div>
@@ -94,17 +95,28 @@
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default"><i class="fa fa-trash"></i></button>
-                                            <a href="http://asd.local.lv/edit">
-                                                <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                                    <td>								
+									 
+                                        <div class="form-group">
+                                            <a <button type="submit" method="POST" action="/user{{ $user->id }}" class="btn btn-default"><i class="fa fa-trash"></i></button>
+											{{method_field('DELETE')}}   {{ csrf_field() }}
+											</a>
+											
+                                            <a href="{{ route('edit', [$user->id]) }}"  >  
+                                                <button type="button" class="btn btn-default" name="edit"  ><i class="fa fa-pencil"></i></button>
+												
+
                                             </a>
-                                            <a href="http://asd.local.lv/add">
-                                            <button type="button" class="btn btn-default"><i class="fa fa-plus"></i></button>
-                                            </a>
+											
+											
+											
+										
+											
+											
+                                           
                                         </div>
                                     </td>
+									
                                 </tr>
                             @endforeach
                             </tbody>
